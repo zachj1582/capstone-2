@@ -1,24 +1,26 @@
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+package spaceinvaders;
 
-public class Ship implements MouseListener, MouseMotionListener {
+import spaceinvaders.AlienArmy;
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class Ship implements MouseListener, MouseMotionListener, KeyListener {
     public static int SHIP_HEIGHT = 25;
     public static int SHIP_WIDTH = 15;
 
-    private int x = 0;
-    private int heightPosition = 0;
+    private int x;
+    private int heightPosition;
 
-    SpaceInvaders spaceInvaders = null;
+    SpaceInvaders spaceInvaders;
 
-    Shot shot = null;
+    ShipShot shipShot = null;
 
     boolean hitState = false;
 
     public Ship(SpaceInvaders spaceInvaders){
         this.spaceInvaders = spaceInvaders;
-        this.x = (int)((SpaceInvaders.WIDTH/2) + (SHIP_WIDTH/2));
+        this.x = (SpaceInvaders.WIDTH/2) + (SHIP_WIDTH/2);
         this.heightPosition = SpaceInvaders.HEIGHT - SHIP_HEIGHT - 20;
     }
 
@@ -57,19 +59,19 @@ public class Ship implements MouseListener, MouseMotionListener {
 
     public void mouseClicked(MouseEvent mouseEvent){
         AlienArmy army = spaceInvaders.getAlienArmy();
-        shot = new Shot(x + (int)(SHIP_WIDTH/2), heightPosition, army);
+        shipShot = new ShipShot(x + (int)(SHIP_WIDTH/2), heightPosition, army);
     }
 
     public void drawShip(Graphics g){
         g.setColor(Color.yellow);
         g.fillRect(x, heightPosition, SHIP_WIDTH, SHIP_HEIGHT);
-        if((shot != null) && (shot.getShotState())){
-            shot.drawShot(g);
+        if((shipShot != null) && (shipShot.getShotState())){
+            shipShot.drawShot(g);
         }
     }
 
     public boolean checkShot(int x, int y){
-        if((x >= this.x) && (x <= (x + SHIP_WIDTH))){
+        if((x >= this.x) && (x <= (this.x + SHIP_WIDTH))){
             if((y >= heightPosition) && (y <= (heightPosition + SHIP_HEIGHT))) {
                 hitState = true;
                 return true;
@@ -80,5 +82,23 @@ public class Ship implements MouseListener, MouseMotionListener {
 
     public void hitByAlien(){
         spaceInvaders.shotShip();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_SPACE){
+            AlienArmy army = spaceInvaders.getAlienArmy();
+            shipShot = new ShipShot(x + (int)(SHIP_WIDTH/2), heightPosition, army);
+        }
     }
 }

@@ -1,21 +1,25 @@
+package spaceinvaders;
+
+import spaceinvaders.AlienArmy;
+
 import java.awt.*;
 
-public class Shot implements Runnable {
+public class ShipShot implements Runnable {
 
     private int shotSpeed = 10;
 
     private int SHOT_WIDTH = 2;
     private int SHOT_HEIGHT = 5;
 
-    private int x = 0;
+    private int x;
 
-    private int shotHeight = 0;
+    private int shotHeight;
 
     boolean shotState = true;
 
-    AlienArmy alienArmy = null;
+    AlienArmy alienArmy;
 
-    public Shot(int x, int y, AlienArmy alienArmy){
+    public ShipShot(int x, int y, AlienArmy alienArmy){
         this.x = x;
         this.shotHeight = y;
         this.alienArmy = alienArmy;

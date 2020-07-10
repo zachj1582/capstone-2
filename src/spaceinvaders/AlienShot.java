@@ -1,3 +1,5 @@
+package spaceinvaders;
+
 import java.awt.*;
 
 public class AlienShot implements Runnable {
@@ -6,9 +8,9 @@ public class AlienShot implements Runnable {
     private int SHOT_WIDTH = 2;
     private int SHOT_HEIGHT = 5;
 
-    private int x = 0;
+    private int x;
 
-    private int shotHeight = 0;
+    private int shotHeight;
 
     boolean shotState = true;
 

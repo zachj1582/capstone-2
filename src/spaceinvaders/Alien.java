@@ -1,3 +1,5 @@
+package spaceinvaders;
+
 import java.awt.*;
 
 public class Alien {

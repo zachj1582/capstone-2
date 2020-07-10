@@ -1,43 +1,50 @@
+package spaceinvaders;
+
+import spaceinvaders.AlienArmy;
+import spaceinvaders.Ship;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 
 public class SpaceInvaders extends JFrame implements Runnable {
 
-    public static int WIDTH = 600;
-    public static int HEIGHT = 400;
+    public static int WIDTH = 1000;
+    public static int HEIGHT = 800;
 
     private int gameSpeed = 100;
 
-    AlienArmy army = null;
+    AlienArmy army;
 
-    Ship ship = null;
+    Ship ship;
 
     private boolean paused = false;
 
-    private int score = 0:
+    private int score = 0;
 
     Graphics offscreen_high;
     BufferedImage offscreen;
 
-    Image backGroundImage = null;
-    Image alienImage = null;
+    Image backGroundImage;
+    Image alienImage;
+
 
     public SpaceInvaders(String frameTitle) {
         super(frameTitle);
 
 
-        addWindowListener(new java.awt.event.WindowAdapter() {
+        addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            public void windowClosing(WindowEvent windowEvent) {
                 System.exit(0);
             }
         });
 
-        backGroundImage = new javax.swing.ImageIcon("back3.jpg").getImage();
+        backGroundImage = new ImageIcon("blackhole_small.jpg").getImage();
 
-        alienImage = new javax.swing.ImageIcon("alien.jpg").getImage();
+        alienImage = new ImageIcon("alien.jpg").getImage();
 
         ship = new Ship(this);
 
@@ -52,27 +59,36 @@ public class SpaceInvaders extends JFrame implements Runnable {
 
         setBackground(Color.black);
         setSize(WIDTH, HEIGHT);
+        setResizable(false);
         setVisible(true);
         startGame();
     }
 
     public void pauseGame(boolean state) {
-        paused = state;
+        this.paused = state;
     }
 
     public void hitAlienScore(){
-        score += 5;
+        this.score += 5;
         System.out.println("Current Score: " + score);
     }
 
     public void shotShip(){
-        score -= 20;
+        this.score -= 20;
         System.out.println("Current Score: " + score);
     }
 
     public void startGame(){
         Thread thread = new Thread(this);
         thread.start();
+    }
+
+    public void paint(Graphics g){
+        offscreen_high.setColor(Color.black);
+        offscreen_high.fillRect(0,0, WIDTH, HEIGHT);
+        army.drawArmy(offscreen_high);
+        ship.drawShip(offscreen_high);
+        g.drawImage(offscreen, 0, 0, this);
     }
 
     public void update(Graphics g){
@@ -106,7 +122,5 @@ public class SpaceInvaders extends JFrame implements Runnable {
         return army;
     }
 
-    public static void main(String[] args){
-        SpaceInvaders invaders = new SpaceInvaders("Space Invaders");
-    }
+
 }
