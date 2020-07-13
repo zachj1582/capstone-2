@@ -17,14 +17,14 @@ and a stream. Should also include error handling for incorrect user inputs.
 *
 <h2>2. Planning the Solution</h2>
 * Will use Swing for GUI
-* Objects needed: Our ship, spaceinvaders.Alien ships, shots fired from both, spaceinvaders.Alien army.
+* Objects needed: Our ship, Alien ships, shots fired from both, Alien army.
 * Will also need to keep score, to draw the objects, a landing page for instructions and to start the game.
 * Would like to have a pause game function and restart function. Various levels of difficulty??
 * Classes needed: <br/>
-    Main <br/>
-    spaceinvaders.ShipShot (Abstract...) -> spaceinvaders.Alien spaceinvaders.ShipShot/spaceinvaders.Ship shot <br/>
-    spaceinvaders.Alien <br/>
-    spaceinvaders.Alien army <br/>
+    spaceinvaders.Main <br/>
+    ShipShot (Abstract...?) -> Alien Shot/Ship shot <br/>
+    Alien <br/>
+    Alien army <br/>
     Draw (for GUI output) <br/>
     perhaps more (Score, Move Army?) ... 
 * Not sure where to implement the lambda, interface, or stream... will need updating

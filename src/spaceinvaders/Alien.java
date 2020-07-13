@@ -9,12 +9,12 @@ public class Alien {
     private int heightPosition = 0;
     private boolean isHit = false;
     private Image alienImage;
-    SpaceInvaders spaceInvaders;
+    Game game;
 
 
-    public Alien(Image alien, SpaceInvaders spaceInvaders){
-        this.alienImage = alien;
-        this.spaceInvaders = spaceInvaders;
+
+    public Alien(Game game){
+        this.game = game;
     }
 
     public boolean isHit() {

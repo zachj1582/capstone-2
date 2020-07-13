@@ -2,68 +2,18 @@ package spaceinvaders;
 
 import java.awt.*;
 
-public class AlienShot implements Runnable {
+public class AlienShot extends AbstractShot {
 
-    private int shotSpeed = 10;
-    private int SHOT_WIDTH = 2;
-    private int SHOT_HEIGHT = 5;
+    protected int direction = 2;
+    protected Color shotColor = Color.green;
 
-    private int x;
-
-    private int shotHeight;
-
-    boolean shotState = true;
-
-    Ship ship;
-
-    public AlienShot(int x, int y, Ship ship){
+    public AlienShot(int x, int y){
         this.x = x;
         this.shotHeight = y;
-        this.ship = ship;
-        Thread thread = new Thread(this);
-        thread.start();
     }
-
-    private boolean moveShot(){
-        if(ship.checkShot(x, shotHeight)){
-            System.out.println("We're hit Captain!");
-            ship.hitByAlien();
-            shotState = false;
-            return true;
-        }
-        shotHeight += 2;
-        if(shotHeight > SpaceInvaders.HEIGHT){
-            shotState = false;
-            return true;
-        }
-        return false;
-    }
-
-    public void drawShot(Graphics g){
-        if(shotState){
-            g.setColor(Color.green);
-        } else {
-            g.setColor(Color.black);
-        }
-        g.fillRect(x, shotHeight, SHOT_WIDTH, SHOT_HEIGHT);
-    }
-
-    public boolean getShotState(){
-        return shotState;
-    }
-
-    public void run(){
-        while(true){
-            try {
-                Thread.sleep(shotSpeed);
-            } catch(InterruptedException ie){
-
-            }
-            if(moveShot()) {
-                break;
-            }
-        }
-    }
-
-
+//
+//    @Override
+//    public void Move(Graphics g) {
+//
+//    }
 }

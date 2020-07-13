@@ -1,6 +1,5 @@
 package spaceinvaders;
 
-import spaceinvaders.Alien;
 
 import java.awt.*;
 import java.util.*;
@@ -15,13 +14,11 @@ public class AlienArmy {
     int moveDistance = 15;
     Vector alienShots = new Vector();
     private Ship ship;
-    private SpaceInvaders spaceInvaders;
-    Image alien;
+    private Game game;
 
-    public AlienArmy(Ship ship, SpaceInvaders spaceInvaders, Image alien) {
+    public AlienArmy(Ship ship, Game game) {
         this.ship = ship;
-        this.spaceInvaders = spaceInvaders;
-        this.alien = alien;
+        this.game = game;
 
         createArmy();
         setStartingPosition();
@@ -29,9 +26,9 @@ public class AlienArmy {
 
     private void createArmy() {
         for (int i = 0; i < 10; i++) {
-            rowOne[i] = new Alien(alien, spaceInvaders);
-            rowTwo[i] = new Alien(alien, spaceInvaders);
-            rowThree[i] = new Alien(alien, spaceInvaders);
+            rowOne[i] = new Alien(game);
+            rowTwo[i] = new Alien(game);
+            rowThree[i] = new Alien(game);
         }
     }
 
@@ -65,7 +62,7 @@ public class AlienArmy {
 
                 if (!rowOne[i].isHit()) {
 
-                    if (rowOne[i].getLeftPosition() > (SpaceInvaders.WIDTH - Alien.ALIEN_WIDTH - 15)) {
+                    if (rowOne[i].getLeftPosition() > (Game.WIDTH - Alien.ALIEN_WIDTH - 15)) {
                         movingRight = false;
 
                         for (int o = 0; o < 10; o++) {
@@ -81,7 +78,7 @@ public class AlienArmy {
                 }
 
                 if (!rowTwo[i].isHit()) {
-                    if (rowTwo[i].getLeftPosition() > (SpaceInvaders.WIDTH - Alien.ALIEN_WIDTH - 15)) {
+                    if (rowTwo[i].getLeftPosition() > (Game.WIDTH - Alien.ALIEN_WIDTH - 15)) {
                         movingRight = false;
 
                         for (int o = 0; o < 10; o++) {
@@ -97,7 +94,7 @@ public class AlienArmy {
                 }
 
                 if (!rowThree[i].isHit()) {
-                    if (rowThree[i].getLeftPosition() > (SpaceInvaders.WIDTH - Alien.ALIEN_WIDTH - 15)) {
+                    if (rowThree[i].getLeftPosition() > (Game.WIDTH - Alien.ALIEN_WIDTH - 15)) {
                         movingRight = false;
 
                         for (int o = 0; o < 10; o++) {
@@ -122,7 +119,7 @@ public class AlienArmy {
         } else {
             for (int i = 0; i < 10; i++) {
 
-                if (rowOne[i].isHit()) {
+                if (!rowOne[i].isHit()) {
                     if (rowOne[i].getLeftPosition() < Alien.ALIEN_WIDTH) {
                         movingRight = true;
 
@@ -137,7 +134,7 @@ public class AlienArmy {
                     }
                 }
 
-                if (rowTwo[i].isHit()) {
+                if (!rowTwo[i].isHit()) {
                     if (rowTwo[i].getLeftPosition() < Alien.ALIEN_WIDTH) {
                         movingRight = true;
 
@@ -152,7 +149,7 @@ public class AlienArmy {
                     }
                 }
 
-                if (rowThree[i].isHit()) {
+                if (!rowThree[i].isHit()) {
                     if (rowThree[i].getLeftPosition() < Alien.ALIEN_WIDTH) {
                         movingRight = true;
 
@@ -181,17 +178,17 @@ public class AlienArmy {
         int random3 = generator.nextInt(10);
         if (!rowOne[random1].isHit()) {
             AlienShot as = new AlienShot(rowOne[random1].getLeftPosition() + (int) (Alien.ALIEN_WIDTH / 2),
-                    rowOne[random1].getHeightPosition(), ship);
+                    rowOne[random1].getHeightPosition());
             alienShots.addElement(as);
         }
         if (!rowTwo[random2].isHit()) {
             AlienShot as = new AlienShot(rowTwo[random2].getLeftPosition() + (int) (Alien.ALIEN_WIDTH / 2),
-                    rowTwo[random2].getHeightPosition(), ship);
+                    rowTwo[random2].getHeightPosition());
             alienShots.addElement(as);
         }
         if (!rowThree[random3].isHit()) {
             AlienShot as = new AlienShot(rowThree[random3].getLeftPosition() + (int) (Alien.ALIEN_WIDTH / 2),
-                    rowThree[random3].getHeightPosition(), ship);
+                    rowThree[random3].getHeightPosition());
             alienShots.addElement(as);
         }
     }
@@ -216,15 +213,15 @@ public class AlienArmy {
     public boolean checkShot(int x, int y) {
         for (int i = 0; i < 10; i++) {
             if (rowOne[i].hitAlien(x, y)) {
-                spaceInvaders.hitAlienScore();
+                game.hitAlienScore();
                 return true;
             }
             if (rowTwo[i].hitAlien(x, y)) {
-                spaceInvaders.hitAlienScore();
+                game.hitAlienScore();
                 return true;
             }
             if (rowThree[i].hitAlien(x, y)) {
-                spaceInvaders.hitAlienScore();
+                game.hitAlienScore();
                 return true;
             }
         }

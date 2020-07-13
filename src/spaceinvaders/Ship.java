@@ -1,65 +1,35 @@
 package spaceinvaders;
 
-import spaceinvaders.AlienArmy;
 
 import java.awt.*;
-import java.awt.event.*;
 
-public class Ship implements MouseListener, MouseMotionListener, KeyListener {
+public class Ship {
     public static int SHIP_HEIGHT = 25;
     public static int SHIP_WIDTH = 15;
 
     private int x;
     private int heightPosition;
 
-    SpaceInvaders spaceInvaders;
 
     ShipShot shipShot = null;
 
     boolean hitState = false;
+    private Game game;
 
-    public Ship(SpaceInvaders spaceInvaders){
-        this.spaceInvaders = spaceInvaders;
-        this.x = (SpaceInvaders.WIDTH/2) + (SHIP_WIDTH/2);
-        this.heightPosition = SpaceInvaders.HEIGHT - SHIP_HEIGHT - 20;
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
-    public void mouseMoved(MouseEvent mouseEvent){
-        int newX = mouseEvent.getX();
-        if(newX > (SpaceInvaders.WIDTH - SHIP_WIDTH - 10)){
-            x = SpaceInvaders.WIDTH - SHIP_WIDTH - 10;
-        } else {
-            x = newX;
-        }
-    }
-
-    public void mouseEntered(MouseEvent mouseEvent) {
-        spaceInvaders.pauseGame(false);
-    }
-
-    public void mouseExited(MouseEvent mouseEvent){
-        spaceInvaders.pauseGame(true);
+    public Ship(Game game){
+        this.game = game;
+        this.x = (Game.WIDTH/2) + (SHIP_WIDTH/2);
+        this.heightPosition = Game.HEIGHT - SHIP_HEIGHT - 20;
     }
 
 
 
-    public void mousePressed(MouseEvent mouseEvent){
-
+    public int getHeightPosition() {
+        return heightPosition;
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    public void mouseClicked(MouseEvent mouseEvent){
-        AlienArmy army = spaceInvaders.getAlienArmy();
-        shipShot = new ShipShot(x + (int)(SHIP_WIDTH/2), heightPosition, army);
+    public int getX() {
+        return x;
     }
 
     public void drawShip(Graphics g){
@@ -81,24 +51,8 @@ public class Ship implements MouseListener, MouseMotionListener, KeyListener {
     }
 
     public void hitByAlien(){
-        spaceInvaders.shotShip();
+        game.shotShip();
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
 
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_SPACE){
-            AlienArmy army = spaceInvaders.getAlienArmy();
-            shipShot = new ShipShot(x + (int)(SHIP_WIDTH/2), heightPosition, army);
-        }
-    }
 }
