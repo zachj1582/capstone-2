@@ -9,35 +9,25 @@ import java.util.HashSet;
 
 public class Game extends JFrame implements Runnable, MouseListener, MouseMotionListener, KeyListener {
 
-
-
     private int gameSpeed = 100;
     private boolean isRunning = true;
     public AlienArmy army;
     public Ship ship;
-
     private int x;
-
     private boolean paused = false;
-
     private int score = 0;
-
     private HashSet<IGameChanged> watchers = new HashSet<>();
-
     Image backGroundImage;
 
     public Game(String frameTitle) {
         super(frameTitle);
-
 
         backGroundImage = new ImageIcon("blackhole_small.jpg").getImage();
         ship = new Ship(this);
         army = new AlienArmy(ship, this);
 
         addMouseListener(this);
-
         addMouseMotionListener(this);
-
         startGame();
     }
 
@@ -76,13 +66,6 @@ public class Game extends JFrame implements Runnable, MouseListener, MouseMotion
         thread.start();
     }
 
-//    public void paint(Graphics g){
-//        offscreen_high.setColor(Color.black);
-//        offscreen_high.fillRect(0,0, WIDTH, HEIGHT);
-//        army.drawArmy(offscreen_high);
-//        ship.drawShip(offscreen_high);
-//        g.drawImage(offscreen, 0, 0, this);
-//    }
 
     public void update(Graphics g){
         paint(g);
@@ -93,9 +76,7 @@ public class Game extends JFrame implements Runnable, MouseListener, MouseMotion
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
+    public void mouseDragged(MouseEvent e) {}
 
     public void mouseMoved(MouseEvent mouseEvent){
         int newX = mouseEvent.getX();
@@ -114,16 +95,10 @@ public class Game extends JFrame implements Runnable, MouseListener, MouseMotion
         pauseGame(true);
     }
 
-
-
-    public void mousePressed(MouseEvent mouseEvent){
-
-    }
+    public void mousePressed(MouseEvent mouseEvent){}
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     public void mouseClicked(MouseEvent mouseEvent){
         AlienArmy army = getAlienArmy();
@@ -131,14 +106,10 @@ public class Game extends JFrame implements Runnable, MouseListener, MouseMotion
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
+    public void keyPressed(KeyEvent e) {}
 
     @Override
     public void keyReleased(KeyEvent e) {
@@ -147,7 +118,6 @@ public class Game extends JFrame implements Runnable, MouseListener, MouseMotion
             ShipShot shipShot = new ShipShot(x + (int)(ship.SHIP_WIDTH/2), ship.getHeightPosition());
         }
     }
-
 
     public void run(){
         int count = 0;

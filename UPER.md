@@ -33,16 +33,19 @@ and a stream. Should also include error handling for incorrect user inputs.
 <h2>3. Executing the Plan</h2>
 * Starting from a tutorial and refactoring to meet the needs.
 * Most of this is going to be the Guess and check to create the design...
-*
+* The refactoring was a much more arduous task than I had originally thought... 
 *
 *
 *
 *
 *
 <h2>4. Reflection / Refactor</h2>
-*
-*
-*
+* I should have talked to someone about the design and trusted my abilities in java to get it done instead of going
+ through the tutorial first.
+* I also should have scrapped the tutorial code and started from scratch instead of refactoring, the refactoring
+ took way too much time and left me with a broken and incomplete project come due date. 
+* I am really disappointed with how much is left to get the refactoring back to a working game and design I had
+ in mind. 
 *
 *
 *

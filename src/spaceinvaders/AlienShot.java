@@ -11,9 +11,4 @@ public class AlienShot extends AbstractShot {
         this.x = x;
         this.shotHeight = y;
     }
-//
-//    @Override
-//    public void Move(Graphics g) {
-//
-//    }
 }

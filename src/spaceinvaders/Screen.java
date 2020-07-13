@@ -41,7 +41,6 @@ public class Screen implements ActionListener, IGameChanged {
 
     }
 
-
     public void paint(Graphics g){
         offscreen_high.setColor(Color.black);
         offscreen_high.fillRect(0,0, WIDTH, HEIGHT);

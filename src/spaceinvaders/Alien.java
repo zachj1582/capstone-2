@@ -11,8 +11,6 @@ public class Alien {
     private Image alienImage;
     Game game;
 
-
-
     public Alien(Game game){
         this.game = game;
     }
